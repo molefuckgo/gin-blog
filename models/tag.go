@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"github.com/jinzhu/gorm"
 	"time"
 )
@@ -18,10 +17,7 @@ type Tag struct {
 func GetTags(pageNum int, pageSize int, maps interface{}) (tags []Tag) {
 	// SELECT * FROM tags WHERE map
 	//
-	fmt.Println("pageNum:", pageNum, "pageSize:", pageSize)
 	db.Where(maps).Offset(pageNum * pageSize).Limit(pageSize).Find(&tags)
-	// fmt.Println("tags", tags)
-	// {{id, created_on, modefied_on}, name, state}
 
 	return
 }
@@ -42,7 +38,7 @@ func ExistTagByName(name string) bool {
 	return false
 }
 
-func ExistTagById(id int) bool {
+func ExistTagByID(id int) bool {
 	var tag Tag
 	db.Select("id").Where("id = ?", id).First(&tag)
 	if tag.ID > 0 {
