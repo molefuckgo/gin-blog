@@ -5,8 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/molefuckgo/gin-blog/models"
 	"github.com/molefuckgo/gin-blog/pkg/e"
+	"github.com/molefuckgo/gin-blog/pkg/logging"
 	"github.com/molefuckgo/gin-blog/pkg/util"
-	"log"
 	"net/http"
 )
 
@@ -41,7 +41,7 @@ func GetAuth(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{

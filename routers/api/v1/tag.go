@@ -6,9 +6,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/molefuckgo/gin-blog/models"
 	"github.com/molefuckgo/gin-blog/pkg/e"
+	"github.com/molefuckgo/gin-blog/pkg/logging"
 	"github.com/molefuckgo/gin-blog/pkg/setting"
 	"github.com/molefuckgo/gin-blog/pkg/util"
-	"log"
 	"net/http"
 )
 
@@ -65,7 +65,7 @@ func AddTag(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{
@@ -114,7 +114,7 @@ func EditTag(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 
@@ -143,7 +143,7 @@ func DeleteTag(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 
