@@ -1,0 +1,85 @@
+info:
+  contact: {}
+  license: {}
+paths:
+  /api/v1/tags:
+    get:
+      parameters:
+      - description: Page
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{"lists":[{"id":1,"created_on":0,"modified_on":1573561866,"name":"1113111113","created_by":"","modified_by":"guowei","state":1}],
+            "total":1}, "msg":"ok"}'
+          schema:
+            type: string
+      summary: 获取多个文章标签
+    post:
+      parameters:
+      - description: Name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: State
+        in: query
+        name: state
+        type: integer
+      - description: CreateBy
+        in: query
+        name: create_by
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200, "data":{}, "msg":"ok"}'
+          schema:
+            type: string
+        "10001":
+          description: '{"code":10001, "data":{}, "msg":"已存在该标签名称"}'
+          schema:
+            type: string
+      summary: 新增文章标签
+  /api/v1/tags/{id}:
+    delete:
+      responses:
+        "200":
+          description: '{"code":200, "data":{}, "msg":"ok"}'
+          schema:
+            type: string
+        "10002":
+          description: '{"code":10002,"data":{},"msg":"该标签不存在"}'
+          schema:
+            type: string
+      summary: 删除文章标签
+    put:
+      parameters:
+      - description: Name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: ModifiedBy
+        in: query
+        name: modified_by
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code": 200, "data":{}, "msg":"ok"}'
+          schema:
+            type: string
+        "10002":
+          description: '{"code":10002, "data":{}, "msg":"该标签不存在"}'
+          schema:
+            type: string
+      summary: 修改文章标签
+swagger: "2.0"
